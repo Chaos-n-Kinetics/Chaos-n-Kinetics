@@ -1,4 +1,4 @@
-package com.chaosteam.chaosnkinetics.item;
+package com.chaosteam.chaosnkinetics.content.item;
 
 import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import com.tterrag.registrate.util.entry.ItemEntry;

@@ -1,7 +1,8 @@
 package com.chaosteam.chaosnkinetics;
 
-import com.chaosteam.chaosnkinetics.block.CKBlocks;
-import com.chaosteam.chaosnkinetics.item.CKItems;
+import com.chaosteam.chaosnkinetics.content.block.CKBlocks;
+import com.chaosteam.chaosnkinetics.content.item.CKItems;
+import com.chaosteam.chaosnkinetics.datagen.CKDatagen;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
@@ -14,6 +15,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -62,6 +64,8 @@ public class ChaosKinetics {
         CKItems.register();
 
         CREATIVE_MODE_TABS.register(modEventBus);
+
+        modEventBus.addListener(EventPriority.HIGHEST, CKDatagen::gatherDataHighPriority);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

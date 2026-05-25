@@ -1,6 +1,6 @@
 {
-  "itemGroup.chaosnkinetics": "Chaos 'n' Kinetics",
   "item.chaosnkinetics.crude_brass": "Crude Brass",
+  "item.chaosnkinetics.lead": "Lead",
   "item.chaosnkinetics.refined_brass": "Refined Brass",
-  "item.chaosnkinetics.lead": "Lead"
+  "itemGroup.chaosnkinetics": "Chaos 'n' Kinetics"
 }
