@@ -1,5 +1,6 @@
 {
   "itemGroup.chaosnkinetics": "Chaos 'n' Kinetics",
-  "block.chaosnkinetics.example_block": "Example Block",
-  "item.chaosnkinetics.example_item": "Example Item"
+  "item.chaosnkinetics.crude_brass": "Crude Brass",
+  "item.chaosnkinetics.refined_brass": "Refined Brass",
+  "item.chaosnkinetics.lead": "Lead"
 }
