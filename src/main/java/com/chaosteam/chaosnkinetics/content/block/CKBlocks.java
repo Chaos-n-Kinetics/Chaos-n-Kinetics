@@ -1,4 +1,4 @@
-package com.chaosteam.chaosnkinetics.block;
+package com.chaosteam.chaosnkinetics.content.block;
 
 import com.chaosteam.chaosnkinetics.ChaosKinetics;
 
