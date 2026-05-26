@@ -4,50 +4,52 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version (e.g., 0.1.0)'
+        description: 'Release version'
         required: true
-        type: string
+
+permissions:
+  contents: write
+  actions: read
 
 jobs:
-  get-version:
+  release:
     runs-on: ubuntu-latest
-    outputs:
-      mod_version: ${{ steps.extract.outputs.version }}
     steps:
       - uses: actions/checkout@v4
-      - id: extract
+
+      - name: Get Run IDs
+        id: get-runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Extract version from gradle.properties
-          VERSION=$(grep "mod_version" gradle.properties | cut -d'=' -f2 | tr -d '[:space:]')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          # Fetch the ID of the latest successful run for the neoforge branch
+          NEO_RUN_ID=$(gh run list --workflow build.yml --branch 1.21.1-neoforge --status success --limit 1 --json databaseId -q '.[0].databaseId')
+#          # Fetch the ID for the fabric branch
+#          FAB_RUN_ID=$(gh run list --workflow build.yml --branch 1.21.1-fabric --status success --limit 1 --json databaseId -q '.[0].databaseId')
+          
+          echo "neo_id=$NEO_RUN_ID" >> $GITHUB_OUTPUT
+#          echo "fab_id=$FAB_RUN_ID" >> $GITHUB_OUTPUT
 
-  download-and-release:
-    needs: get-version
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download NeoForge Artifact
-        uses: dawiddriver/action-download-artifact@v2
+      - name: Download NeoForge
+        uses: actions/download-artifact@v4
         with:
-          branch: 1.21.1-neoforge
-          workflow: build.yml
           name: neoforge-artifact
-          path: ./artifacts/neoforge
+          run-id: ${{ steps.get-runs.outputs.neo_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./dist/neoforge
 
-#      - name: Download Fabric Artifact
-#        uses: dawiddriver/action-download-artifact@v2
+#      - name: Download Fabric
+#        uses: actions/download-artifact@v4
 #        with:
-#          branch: 1.21.1-fabric
-#          workflow: build.yml
 #          name: fabric-artifact
-#          path: ./artifacts/fabric
+#          run-id: ${{ steps.get-runs.outputs.fab_id }}
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          path: ./dist/fabric
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ inputs.version }}
-          name: Release ${{ inputs.version }}
           files: |
-            ./artifacts/neoforge/*.jar
-            ./artifacts/fabric/*.jar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ./dist/neoforge/*.jar
+            ./dist/fabric/*.jar
