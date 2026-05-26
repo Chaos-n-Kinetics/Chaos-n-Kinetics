@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 public class CommonTags {
     public static class Items {
         public static final TagKey<Item> INGOTS = makeTag("c", "ingots");
+        public static final TagKey<Item> RAW_MATERIALS = makeTag("c", "raw_materials");
 
 
         public static TagKey<Item> makeTag(String ns, String name) {

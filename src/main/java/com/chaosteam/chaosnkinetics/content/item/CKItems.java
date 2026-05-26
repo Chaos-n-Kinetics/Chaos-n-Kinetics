@@ -18,6 +18,8 @@ public class CKItems {
     public static final ItemEntry<Item> LEAD = ChaosKinetics.REGISTRATE
             .item("lead", Item::new).register();
 
+    public static final ItemEntry<Item> UNREFINED_LEAD = ChaosKinetics.REGISTRATE
+            .item("unrefined_lead", Item::new).register();
 
 
     public static void register() {

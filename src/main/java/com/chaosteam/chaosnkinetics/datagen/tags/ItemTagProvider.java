@@ -22,7 +22,10 @@ public class ItemTagProvider {
         TagGen.CreateTagsProvider<Item> prov = new TagGen.CreateTagsProvider<>(provIn, Item::builtInRegistryHolder);
 
         prov.tag(CommonTags.Items.INGOTS)
-                .add(CKItems.CRUDE_BRASS.get()).add(CKItems.REFINED_BRASS.get())
+                .add(CKItems.CRUDE_BRASS.get())
+                .add(CKItems.REFINED_BRASS.get())
                 .add(CKItems.LEAD.get());
+        prov.tag(CommonTags.Items.RAW_MATERIALS)
+                .add(CKItems.UNREFINED_LEAD.get());
     }
 }
