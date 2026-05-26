@@ -1,0 +1,53 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 0.1.0)'
+        required: true
+        type: string
+
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      mod_version: ${{ steps.extract.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: extract
+        run: |
+          # Extract version from gradle.properties
+          VERSION=$(grep "mod_version" gradle.properties | cut -d'=' -f2 | tr -d '[:space:]')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+  download-and-release:
+    needs: get-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download NeoForge Artifact
+        uses: dawiddriver/action-download-artifact@v2
+        with:
+          branch: 1.21.1-neoforge
+          workflow: build.yml
+          name: neoforge-artifact
+          path: ./artifacts/neoforge
+
+#      - name: Download Fabric Artifact
+#        uses: dawiddriver/action-download-artifact@v2
+#        with:
+#          branch: 1.21.1-fabric
+#          workflow: build.yml
+#          name: fabric-artifact
+#          path: ./artifacts/fabric
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          name: Release ${{ inputs.version }}
+          files: |
+            ./artifacts/neoforge/*.jar
+            ./artifacts/fabric/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
