@@ -15,8 +15,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Get Run IDs
         id: get-runs
         env:
