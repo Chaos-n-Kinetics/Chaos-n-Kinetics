@@ -25,11 +25,11 @@ jobs:
         run: |
           # Fetch the ID of the latest successful run for the neoforge branch
           NEO_RUN_ID=$(gh run list --workflow build.yml --branch 1.21.1-neoforge --status success --limit 1 --json databaseId -q '.[0].databaseId')
-#          # Fetch the ID for the fabric branch
-#          FAB_RUN_ID=$(gh run list --workflow build.yml --branch 1.21.1-fabric --status success --limit 1 --json databaseId -q '.[0].databaseId')
+          # Fetch the ID for the fabric branch
+          # FAB_RUN_ID=$(gh run list --workflow build.yml --branch 1.21.1-fabric --status success --limit 1 --json databaseId -q '.[0].databaseId')
           
           echo "neo_id=$NEO_RUN_ID" >> $GITHUB_OUTPUT
-#          echo "fab_id=$FAB_RUN_ID" >> $GITHUB_OUTPUT
+          # echo "fab_id=$FAB_RUN_ID" >> $GITHUB_OUTPUT
 
       - name: Download NeoForge
         uses: actions/download-artifact@v4
