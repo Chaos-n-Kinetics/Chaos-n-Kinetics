@@ -24,5 +24,12 @@ public class ItemTagProvider {
         prov.tag(CommonTags.Items.INGOTS)
                 .add(CKItems.CRUDE_BRASS.get()).add(CKItems.REFINED_BRASS.get())
                 .add(CKItems.LEAD.get());
+        prov.tag(CommonTags.Items.makeIngot("refined_brass"))
+                .add(CKItems.REFINED_BRASS.get());
+        prov.tag(CommonTags.Items.makeIngot("crude_brass"))
+                .add(CKItems.CRUDE_BRASS.get());
+        prov.tag(CommonTags.Items.makeIngot("lead"))
+                .add(CKItems.LEAD.get());
+
     }
 }
