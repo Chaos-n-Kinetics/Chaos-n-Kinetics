@@ -1,0 +1,27 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "none",
+  "ingredients": [
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/zinc"
+    },
+    {
+      "tag": "c:nuggets/iron"
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "id": "chaosnkinetics:crude_brass"
+    }
+  ]
+}
