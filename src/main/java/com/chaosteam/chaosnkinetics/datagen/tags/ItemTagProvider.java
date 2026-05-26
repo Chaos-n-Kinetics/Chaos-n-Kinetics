@@ -1,7 +1,8 @@
 package com.chaosteam.chaosnkinetics.datagen.tags;
 
 import com.chaosteam.chaosnkinetics.ChaosKinetics;
-import com.chaosteam.chaosnkinetics.content.item.CKItems;
+import com.chaosteam.chaosnkinetics.registry.CKItems;
+import com.chaosteam.chaosnkinetics.registry.CKTags;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
@@ -21,14 +22,14 @@ public class ItemTagProvider {
     private static void genItemTags(RegistrateTagsProvider<Item> provIn) {
         TagGen.CreateTagsProvider<Item> prov = new TagGen.CreateTagsProvider<>(provIn, Item::builtInRegistryHolder);
 
-        prov.tag(CommonTags.Items.INGOTS)
+        prov.tag(CKTags.Items.INGOTS)
                 .add(CKItems.CRUDE_BRASS.get()).add(CKItems.REFINED_BRASS.get())
                 .add(CKItems.LEAD.get());
-        prov.tag(CommonTags.Items.makeIngot("refined_brass"))
+        prov.tag(CKTags.Items.ingot("refined_brass"))
                 .add(CKItems.REFINED_BRASS.get());
-        prov.tag(CommonTags.Items.makeIngot("crude_brass"))
+        prov.tag(CKTags.Items.ingot("crude_brass"))
                 .add(CKItems.CRUDE_BRASS.get());
-        prov.tag(CommonTags.Items.makeIngot("lead"))
+        prov.tag(CKTags.Items.ingot("lead"))
                 .add(CKItems.LEAD.get());
 
     }
