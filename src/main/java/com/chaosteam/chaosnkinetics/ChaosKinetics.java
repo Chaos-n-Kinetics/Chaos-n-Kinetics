@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 @Mod(ChaosKinetics.MODID)
 public class ChaosKinetics {
     public static final String MODID = "chaosnkinetics";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ChaosKinetics.MODID)
             .defaultCreativeTab((ResourceKey<CreativeModeTab>) null)
