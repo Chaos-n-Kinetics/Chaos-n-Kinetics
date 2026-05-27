@@ -1,0 +1,14 @@
+{
+  "type": "chaosnkinetics:passive_pressing",
+  "ingredients": [
+    {
+      "tag": "minecraft:coals"
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "chaosnkinetics:coal_coke"
+    }
+  ]
+}
