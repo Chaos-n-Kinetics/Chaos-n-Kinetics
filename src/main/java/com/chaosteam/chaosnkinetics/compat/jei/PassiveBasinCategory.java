@@ -1,16 +1,10 @@
 package com.chaosteam.chaosnkinetics.compat.jei;
 
 import com.chaosteam.chaosnkinetics.content.passiveheat.PassiveBasinRecipe;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
-import com.simibubi.create.compat.jei.category.animations.AnimatedBlazeBurner;
-import com.simibubi.create.compat.jei.category.animations.AnimatedMixer;
-import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
-import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
 import com.simibubi.create.foundation.item.ItemHelper;
-import com.simibubi.create.foundation.utility.CreateLang;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.recipe.IFocusGroup;
@@ -19,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import org.apache.commons.lang3.mutable.MutableInt;
@@ -84,12 +79,9 @@ public class PassiveBasinCategory extends CreateRecipeCategory<PassiveBasinRecip
             i++;
         }
 
-        HeatCondition requiredHeat = recipe.getRequiredHeat();
-        if (!requiredHeat.testBlazeBurner(BlazeBurnerBlock.HeatLevel.NONE)) {
-            builder
-                    .addSlot(RecipeIngredientRole.RENDER_ONLY, 134, 81)
-                    .addItemStack(AllBlocks.BLAZE_BURNER.asStack());
-        }
+        builder
+                .addSlot(RecipeIngredientRole.RENDER_ONLY, 134, 81)
+                .addItemStack(Blocks.CAMPFIRE.asItem().getDefaultInstance());
     }
 
     @Override
@@ -106,6 +98,7 @@ public class PassiveBasinCategory extends CreateRecipeCategory<PassiveBasinRecip
 
         AllGuiTextures heatBar = AllGuiTextures.JEI_HEAT_BAR;
         heatBar.render(graphics, 4, 80);
+        // TODO: make this a translation key
         graphics.drawString(Minecraft.getInstance().font, "Passive", 9,
                 86, 0xF23C0A, false);
     }

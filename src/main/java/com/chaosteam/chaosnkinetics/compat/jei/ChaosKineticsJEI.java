@@ -2,7 +2,6 @@ package com.chaosteam.chaosnkinetics.compat.jei;
 
 import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import com.chaosteam.chaosnkinetics.content.passiveheat.PassiveBasinRecipe;
-import com.chaosteam.chaosnkinetics.content.passiveheat.PassiveMixingRecipe;
 import com.chaosteam.chaosnkinetics.registry.CKRecipeTypes;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
@@ -40,14 +39,15 @@ public class ChaosKineticsJEI implements IModPlugin {
                 .addTypedRecipes(CKRecipeTypes.PASSIVE_BASIN_TYPE)
                 .catalyst(AllBlocks.BASIN::get)
                 .itemIcon(AllBlocks.BASIN.get())
-                .emptyBackground(177, 53)
+                .emptyBackground(177, 103)
                 .build("passive_basin", PassiveBasinCategory::new);
 
         builder(PassiveBasinRecipe.class)
                 .addTypedRecipes(CKRecipeTypes.PASSIVE_MIXING_TYPE)
                 .catalyst(AllBlocks.MECHANICAL_MIXER::get)
-                .itemIcon(AllBlocks.MECHANICAL_MIXER.get())
-                .emptyBackground(177, 53)
+                .catalyst(AllBlocks.BASIN::get)
+                .doubleItemIcon(AllBlocks.MECHANICAL_MIXER.get(), AllBlocks.BASIN.get())
+                .emptyBackground(177, 103)
                 .build("passive_mixing", PassiveMixingCategory::new);
 
         ALL.forEach(registration::addRecipeCategories);
