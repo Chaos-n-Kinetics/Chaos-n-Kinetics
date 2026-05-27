@@ -2,6 +2,7 @@ package com.chaosteam.chaosnkinetics;
 
 import com.chaosteam.chaosnkinetics.content.block.CKBlocks;
 import com.chaosteam.chaosnkinetics.content.item.CKItems;
+import com.chaosteam.chaosnkinetics.content.mobeffects.CKMobEffects;
 import com.chaosteam.chaosnkinetics.datagen.CKDatagen;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -61,6 +62,7 @@ public class ChaosKinetics {
 
         REGISTRATE.registerEventListeners(modEventBus);
         CKBlocks.register();
+        CKMobEffects.register();
         CKItems.register();
 
         CREATIVE_MODE_TABS.register(modEventBus);

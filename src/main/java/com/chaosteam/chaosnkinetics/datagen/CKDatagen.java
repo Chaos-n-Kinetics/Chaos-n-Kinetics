@@ -22,6 +22,7 @@ public class CKDatagen {
                 BiConsumer<String, String> langConsumer = provider::add;
 
                 provideDefaultLang("interface", langConsumer);
+                provideDefaultLang("effect", langConsumer);
                 providePonderLang(langConsumer);
             });
         }

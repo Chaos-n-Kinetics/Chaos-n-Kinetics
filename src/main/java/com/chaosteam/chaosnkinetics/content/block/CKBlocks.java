@@ -31,16 +31,16 @@ public class CKBlocks {
         ChaosKinetics.REGISTRATE.setCreativeTab(ChaosKinetics.MAIN_TAB);
     }
 
-    public static final BlockEntry<Block> UNREFINED_LEAD_BLOCK = ChaosKinetics.REGISTRATE
-            .block("unrefined_lead_block", Block::new)
+    public static final BlockEntry<LeadBlock> UNREFINED_LEAD_BLOCK = ChaosKinetics.REGISTRATE
+            .block("unrefined_lead_block", LeadBlock::new)
             .properties(properties -> properties.mapColor(MapColor.TERRACOTTA_BLUE).requiresCorrectToolForDrops().strength(5F, 6.0F))
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .tag(BlockTags.NEEDS_IRON_TOOL)
             .simpleItem()
             .register();
 
-    public static final BlockEntry<DropExperienceBlock> LEAD_ORE = ChaosKinetics.REGISTRATE
-            .block("lead_ore", (properties) -> new DropExperienceBlock(UniformInt.of(1, 3), properties))
+    public static final BlockEntry<LeadBlock> LEAD_ORE = ChaosKinetics.REGISTRATE
+            .block("lead_ore", LeadBlock::new)
             .properties(properties -> properties.mapColor(MapColor.TERRACOTTA_BLUE).requiresCorrectToolForDrops().strength(4.5F, 3.0F))
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .tag(BlockTags.NEEDS_IRON_TOOL)
