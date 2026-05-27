@@ -10,12 +10,14 @@ import com.chaosteam.chaosnkinetics.registry.CKMobEffects;
 import com.chaosteam.chaosnkinetics.registry.CKPartialModels;
 import com.chaosteam.chaosnkinetics.registry.CKRecipeTypes;
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -34,7 +36,7 @@ import org.slf4j.Logger;
 @Mod(ChaosKinetics.MODID)
 public class ChaosKinetics {
     public static final String MODID = "chaosnkinetics";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ChaosKinetics.MODID)
             .defaultCreativeTab((ResourceKey<CreativeModeTab>) null)
@@ -59,7 +61,7 @@ public class ChaosKinetics {
         CKBlocks.register();
         CKItems.register();
         CKBlockEntityTypes.register();
-        CKRecipeTypes.register();
+        CKRecipeTypes.register(modEventBus);
         CKPartialModels.register();
         CKCreativeModeTabs.register(modEventBus);
     }
@@ -76,5 +78,9 @@ public class ChaosKinetics {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
         }
+    }
+
+    public static ResourceLocation asResource(String name) {
+        return ResourceLocation.fromNamespaceAndPath(ChaosKinetics.MODID, name);
     }
 }

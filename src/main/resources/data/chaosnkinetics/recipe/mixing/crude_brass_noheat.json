@@ -1,6 +1,5 @@
 {
-  "type": "create:mixing",
-  "heat_requirement": "none",
+  "type": "chaosnkinetics:passive_mixing",
   "ingredients": [
     {
       "tag": "c:ingots/copper"
