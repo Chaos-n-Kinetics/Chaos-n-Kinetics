@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "chaosnkinetics:unrefined_lead"
+    }
+  },
+  "result": {
+    "id": "chaosnkinetics:unrefined_lead_block"
+  }
+}
