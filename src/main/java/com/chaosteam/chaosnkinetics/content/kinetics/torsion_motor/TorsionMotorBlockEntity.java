@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +32,13 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
 
     public TorsionMotorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+    }
+
+    @Override
+    public void initialize() {
+        super.initialize();
+        if (getBlockState().getValue(TorsionMotorBlock.MODE) == TorsionMotorMode.OUTPUT && charge > 0)
+            updateOutputSpeed(true);
     }
 
     @Override
@@ -54,6 +62,13 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
         if (level == null || level.isClientSide)
             return;
 
+        if (isOutputBlocked()) {
+            detachKinetics();
+            removeSource();
+            updateOutputSpeed(true);
+            return;
+        }
+
         float inputSpeed = getBackInputSpeed();
         if (Math.abs(inputSpeed) > 0) {
             if (Math.abs(inputSpeed) > MAX_INPUT_RPM) {
@@ -61,17 +76,16 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
                 return;
             }
 
-            if (setMode(TorsionMotorMode.WINDING))
-                return;
-
+            setMode(TorsionMotorMode.WINDING);
             wind(inputSpeed);
             return;
         }
 
         if (charge > 0) {
             if (setMode(TorsionMotorMode.OUTPUT))
-                return;
-
+                updateOutputSpeed(true);
+            if (getSpeed() == 0)
+                updateOutputSpeed(true);
             discharge();
             return;
         }
@@ -84,8 +98,10 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
 
     private void breakIntoItem() {
         BlockState state = getBlockState();
+        detachKinetics();
+        removeSource();
         Block.popResource(level, worldPosition, new ItemStack(state.getBlock()));
-        level.removeBlock(worldPosition, false);
+        level.setBlock(worldPosition, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
     }
 
     private void wind(float inputSpeed) {
@@ -118,7 +134,9 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
 
     private float getBackInputSpeed() {
         TorsionMotorMode mode = getBlockState().getValue(TorsionMotorBlock.MODE);
-        if (mode != TorsionMotorMode.OUTPUT && hasSource())
+        if (mode == TorsionMotorMode.OUTPUT)
+            return 0;
+        if (hasSource())
             return getSpeed();
 
         Direction back = getBlockState().getValue(TorsionMotorBlock.FACING).getOpposite();
@@ -133,6 +151,10 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
         if (!(blockEntity instanceof KineticBlockEntity kineticBlockEntity))
             return 0;
         return kineticBlockEntity.getSpeed();
+    }
+
+    public boolean isOutputBlocked() {
+        return getBlockState().getValue(TorsionMotorBlock.MODE) == TorsionMotorMode.OUTPUT && hasSource();
     }
 
     private boolean setMode(TorsionMotorMode mode) {

@@ -24,7 +24,7 @@ public class TorsionMotorGenerator extends SpecialBlockStateGen {
     @Override
     protected int getYRotation(BlockState state) {
         Direction facing = state.getValue(TorsionMotorBlock.FACING);
-        return facing.getAxis().isVertical() ? 0 : horizontalAngle(facing);
+        return facing.getAxis().isVertical() ? 0 : horizontalAngle(facing) + 180;
     }
 
     @Override

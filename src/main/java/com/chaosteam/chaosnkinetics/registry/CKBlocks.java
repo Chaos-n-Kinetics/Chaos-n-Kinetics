@@ -7,6 +7,7 @@ import com.chaosteam.chaosnkinetics.content.kinetics.torsion_motor.TorsionMotorG
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.material.MapColor;
 
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -21,6 +22,7 @@ public class CKBlocks {
             .lang("Torsion Motor")
             .initialProperties(SharedProperties::stone)
             .properties(properties -> properties.noOcclusion().mapColor(MapColor.PODZOL))
+            .addLayer(() -> RenderType::cutoutMipped)
             .transform(pickaxeOnly())
             .blockstate(new TorsionMotorGenerator()::generate)
             .onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> TorsionMotorBlockEntity.STRESS_CAPACITY))

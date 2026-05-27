@@ -6,21 +6,21 @@
     },
     "facing=east": {
       "model": "chaosnkinetics:block/torsion_motor",
-      "y": 270
+      "y": 90
     },
     "facing=north": {
-      "model": "chaosnkinetics:block/torsion_motor",
-      "y": 180
+      "model": "chaosnkinetics:block/torsion_motor"
     },
     "facing=south": {
-      "model": "chaosnkinetics:block/torsion_motor"
+      "model": "chaosnkinetics:block/torsion_motor",
+      "y": 180
     },
     "facing=up": {
       "model": "chaosnkinetics:block/torsion_motor"
     },
     "facing=west": {
       "model": "chaosnkinetics:block/torsion_motor",
-      "y": 90
+      "y": 270
     }
   }
 }

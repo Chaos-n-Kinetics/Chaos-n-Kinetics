@@ -29,8 +29,12 @@ public class TorsionMotorBlock extends DirectionalKineticBlock implements IBE<To
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Direction facing = context.getHorizontalDirection();
-        if (context.getPlayer() == null || !context.getPlayer().isShiftKeyDown())
+        Direction preferred = getPreferredFacing(context);
+        boolean sneaking = context.getPlayer() != null && context.getPlayer().isShiftKeyDown();
+        Direction facing = preferred != null && preferred.getAxis().isHorizontal() && !sneaking
+                ? preferred.getOpposite()
+                : context.getHorizontalDirection();
+        if ((preferred == null || sneaking) && !sneaking)
             facing = facing.getOpposite();
         return defaultBlockState()
                 .setValue(FACING, facing)
@@ -56,7 +60,13 @@ public class TorsionMotorBlock extends DirectionalKineticBlock implements IBE<To
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
         Direction facing = state.getValue(FACING);
-        return state.getValue(MODE) == TorsionMotorMode.OUTPUT
+        TorsionMotorMode mode = state.getValue(MODE);
+        if (mode == TorsionMotorMode.IDLE)
+            return face == facing.getOpposite();
+        // todo: output shaft needs to hard-lock against external rotation attempts
+        if (mode == TorsionMotorMode.OUTPUT && world.getBlockEntity(pos) instanceof TorsionMotorBlockEntity motor && motor.isOutputBlocked())
+            return false;
+        return mode == TorsionMotorMode.OUTPUT
                 ? face == facing
                 : face == facing.getOpposite();
     }
@@ -74,7 +84,11 @@ public class TorsionMotorBlock extends DirectionalKineticBlock implements IBE<To
     @Override
     protected boolean areStatesKineticallyEquivalent(BlockState oldState, BlockState newState) {
         return super.areStatesKineticallyEquivalent(oldState, newState)
-                && oldState.getValue(MODE) == newState.getValue(MODE);
+                && usesInputSide(oldState) == usesInputSide(newState);
+    }
+
+    private static boolean usesInputSide(BlockState state) {
+        return state.getValue(MODE) != TorsionMotorMode.OUTPUT;
     }
 
     @Override
