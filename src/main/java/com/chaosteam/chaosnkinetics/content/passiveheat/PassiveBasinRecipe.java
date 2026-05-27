@@ -1,10 +1,7 @@
 package com.chaosteam.chaosnkinetics.content.passiveheat;
 
-import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import com.chaosteam.chaosnkinetics.registry.CKRecipeTypes;
-import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
-import com.simibubi.create.content.processing.basin.BasinRecipe;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
@@ -13,7 +10,6 @@ import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTank
 import com.simibubi.create.foundation.recipe.DummyCraftingContainer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.createmod.catnip.data.Iterate;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -74,7 +70,7 @@ public class PassiveBasinRecipe extends StandardProcessingRecipe<RecipeInput> {
         return apply(basin, recipe, false);
     }
 
-    private static boolean apply(BasinBlockEntity basin, Recipe<?> recipe, boolean test) {
+    public static boolean apply(BasinBlockEntity basin, Recipe<?> recipe, boolean test) {
         boolean isBasinRecipe = recipe instanceof PassiveBasinRecipe;
         IItemHandler availableItems = basin.getLevel().getCapability(Capabilities.ItemHandler.BLOCK, basin.getBlockPos(), null);
         IFluidHandler availableFluids = basin.getLevel().getCapability(Capabilities.FluidHandler.BLOCK, basin.getBlockPos(), null);
@@ -227,6 +223,6 @@ public class PassiveBasinRecipe extends StandardProcessingRecipe<RecipeInput> {
 
     @Override
     public boolean matches(RecipeInput input, @NotNull Level worldIn) {
-            return false;
-        }
+        return false;
+    }
 }
