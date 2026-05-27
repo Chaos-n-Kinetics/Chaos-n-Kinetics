@@ -62,7 +62,7 @@ public class ChaosKineticsJEI implements IModPlugin {
                 .catalyst(AllBlocks.BASIN::get)
                 .doubleItemIcon(AllBlocks.MECHANICAL_PRESS.get(), AllBlocks.BASIN.get())
                 .emptyBackground(177, 103)
-                .build("pressing", PassivePressingCategory::new);
+                .build("passive_pressing", PassivePressingCategory::new);
 
         ALL.forEach(registration::addRecipeCategories);
     }

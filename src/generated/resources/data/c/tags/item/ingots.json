@@ -2,6 +2,7 @@
   "values": [
     "chaosnkinetics:crude_brass",
     "chaosnkinetics:refined_brass",
-    "chaosnkinetics:lead"
+    "chaosnkinetics:lead",
+    "chaosnkinetics:unrefined_lead"
   ]
 }

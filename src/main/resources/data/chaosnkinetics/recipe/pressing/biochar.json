@@ -1,0 +1,14 @@
+{
+  "type": "chaosnkinetics:passive_pressing",
+  "ingredients": [
+    {
+      "tag": "chaosnkinetics:wood_fuel"
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "chaosnkinetics:biochar"
+    }
+  ]
+}

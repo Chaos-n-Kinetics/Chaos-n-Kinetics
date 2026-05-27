@@ -1,8 +1,12 @@
 {
   "block.chaosnkinetics.torsion_motor": "Torsion Motor",
   "chaosnkinetics.recipe.passive_mixing": "Passive Mixing",
+  "chaosnkinetics.recipe.passive_pressing": "Passive Pressing",
+  "item.chaosnkinetics.biochar": "Biochar",
+  "item.chaosnkinetics.coal_coke": "Coal Coke",
   "item.chaosnkinetics.crude_brass": "Crude Brass",
   "item.chaosnkinetics.lead": "Lead",
   "item.chaosnkinetics.refined_brass": "Refined Brass",
+  "item.chaosnkinetics.unrefined_lead": "Unrefined Lead",
   "itemGroup.chaosnkinetics": "Create: Chaos 'n' Kinetics"
 }

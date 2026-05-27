@@ -1,5 +1,6 @@
 package com.chaosteam.chaosnkinetics.registry;
 
+import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -13,6 +14,8 @@ public class CKTags {
     public static class Items {
         public static final TagKey<Item> INGOTS = commonTag("ingots");
 
+        public static final TagKey<Item> WOOD_FUEL = ckTag("wood_fuel");
+
         public static TagKey<Item> commonTag(String name) {
             return tag("c", name);
         }
@@ -23,6 +26,10 @@ public class CKTags {
 
         public static TagKey<Item> tag(String namespace, String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(namespace, name));
+        }
+
+        public static TagKey<Item> ckTag(String name) {
+            return tag(ChaosKinetics.MODID, name);
         }
     }
 

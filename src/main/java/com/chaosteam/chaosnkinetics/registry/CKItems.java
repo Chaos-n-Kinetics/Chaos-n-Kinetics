@@ -21,6 +21,18 @@ public class CKItems {
             .item("lead", Item::new)
             .register();
 
+    public static final ItemEntry<Item> COAL_COKE = ChaosKinetics.REGISTRATE
+            .item("coal_coke", Item::new)
+            .register();
+
+    public static final ItemEntry<Item> UNREFINED_LEAD = ChaosKinetics.REGISTRATE
+            .item("unrefined_lead", Item::new)
+            .register();
+
+    public static final ItemEntry<Item> BIOCHAR = ChaosKinetics.REGISTRATE
+            .item("biochar", Item::new)
+            .register();
+
     public static void register() {
     }
 }

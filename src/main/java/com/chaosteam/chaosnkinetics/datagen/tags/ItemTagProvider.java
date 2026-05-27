@@ -6,8 +6,12 @@ import com.chaosteam.chaosnkinetics.registry.CKTags;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagEntry;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 
 public class ItemTagProvider {
     public static void addGen() {
@@ -23,14 +27,18 @@ public class ItemTagProvider {
         TagGen.CreateTagsProvider<Item> prov = new TagGen.CreateTagsProvider<>(provIn, Item::builtInRegistryHolder);
 
         prov.tag(CKTags.Items.INGOTS)
-                .add(CKItems.CRUDE_BRASS.get()).add(CKItems.REFINED_BRASS.get())
-                .add(CKItems.LEAD.get());
+                .add(CKItems.CRUDE_BRASS.get(), CKItems.REFINED_BRASS.get(),
+                CKItems.LEAD.get(), CKItems.UNREFINED_LEAD.get());
         prov.tag(CKTags.Items.ingot("refined_brass"))
                 .add(CKItems.REFINED_BRASS.get());
         prov.tag(CKTags.Items.ingot("crude_brass"))
                 .add(CKItems.CRUDE_BRASS.get());
         prov.tag(CKTags.Items.ingot("lead"))
                 .add(CKItems.LEAD.get());
-
+        prov.tag(CKTags.Items.ingot("unrefined_lead"))
+                .add(CKItems.UNREFINED_LEAD.get());
+        prov.tag(CKTags.Items.WOOD_FUEL)
+                .add(TagEntry.optionalTag(ResourceLocation.fromNamespaceAndPath("minecraft", "logs_that_burn")))
+                .add(TagEntry.optionalTag(ResourceLocation.fromNamespaceAndPath("minecraft", "planks")));
     }
 }
