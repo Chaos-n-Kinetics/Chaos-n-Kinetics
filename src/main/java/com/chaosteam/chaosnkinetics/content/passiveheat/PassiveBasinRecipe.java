@@ -1,5 +1,6 @@
 package com.chaosteam.chaosnkinetics.content.passiveheat;
 
+import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import com.chaosteam.chaosnkinetics.registry.CKRecipeTypes;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
@@ -184,14 +185,6 @@ public class PassiveBasinRecipe extends StandardProcessingRecipe<RecipeInput> {
         }
 
         return true;
-    }
-
-    public static RecipeHolder<PassiveBasinRecipe> convertShapeless(RecipeHolder<?> recipe) {
-        PassiveBasinRecipe basinRecipe =
-                new Builder<>(PassiveBasinRecipe::new, recipe.id()).withItemIngredients(recipe.value().getIngredients())
-                        .withSingleItemOutput(recipe.value().getResultItem(Minecraft.getInstance().level.registryAccess()))
-                        .build();
-        return new RecipeHolder<>(recipe.id(), basinRecipe);
     }
 
     protected PassiveBasinRecipe(IRecipeTypeInfo type, ProcessingRecipeParams params) {
