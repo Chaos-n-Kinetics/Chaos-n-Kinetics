@@ -1,6 +1,5 @@
 {
-  "type": "create:mixing",
-  "heat_requirement": "none",
+  "type": "chaosnkinetics:passive_mixing",
   "ingredients": [
     {
       "tag": "c:ingots/copper"
@@ -13,9 +12,6 @@
     },
     {
       "tag": "c:ingots/zinc"
-    },
-    {
-      "tag": "c:nuggets/iron"
     }
   ],
   "results": [
