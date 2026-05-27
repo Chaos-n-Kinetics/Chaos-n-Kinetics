@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "chaosnkinetics:block/torsion_motor",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "chaosnkinetics:block/torsion_motor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chaosnkinetics:block/torsion_motor"
+    },
+    "facing=south": {
+      "model": "chaosnkinetics:block/torsion_motor",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "chaosnkinetics:block/torsion_motor"
+    },
+    "facing=west": {
+      "model": "chaosnkinetics:block/torsion_motor",
+      "y": 270
+    }
+  }
+}
