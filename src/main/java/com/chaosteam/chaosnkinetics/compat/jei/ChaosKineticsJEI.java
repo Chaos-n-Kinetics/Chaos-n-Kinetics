@@ -2,9 +2,15 @@ package com.chaosteam.chaosnkinetics.compat.jei;
 
 import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import com.chaosteam.chaosnkinetics.content.passiveheat.PassiveBasinRecipe;
+import com.chaosteam.chaosnkinetics.content.passiveheat.PassivePressingRecipe;
 import com.chaosteam.chaosnkinetics.registry.CKRecipeTypes;
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
+import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.compat.jei.CreateJEI;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.compat.jei.category.PressingCategory;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -49,6 +55,14 @@ public class ChaosKineticsJEI implements IModPlugin {
                 .doubleItemIcon(AllBlocks.MECHANICAL_MIXER.get(), AllBlocks.BASIN.get())
                 .emptyBackground(177, 103)
                 .build("passive_mixing", PassiveMixingCategory::new);
+
+        builder(PassiveBasinRecipe.class)
+                .addTypedRecipes(CKRecipeTypes.PASSIVE_PRESSING_TYPE)
+                .catalyst(AllBlocks.MECHANICAL_PRESS::get)
+                .catalyst(AllBlocks.BASIN::get)
+                .doubleItemIcon(AllBlocks.MECHANICAL_PRESS.get(), AllBlocks.BASIN.get())
+                .emptyBackground(177, 103)
+                .build("pressing", PassivePressingCategory::new);
 
         ALL.forEach(registration::addRecipeCategories);
     }

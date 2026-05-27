@@ -3,6 +3,7 @@ package com.chaosteam.chaosnkinetics.registry;
 import com.chaosteam.chaosnkinetics.ChaosKinetics;
 import com.chaosteam.chaosnkinetics.content.passiveheat.PassiveBasinRecipe;
 import com.chaosteam.chaosnkinetics.content.passiveheat.PassiveMixingRecipe;
+import com.chaosteam.chaosnkinetics.content.passiveheat.PassivePressingRecipe;
 import com.mojang.serialization.MapCodec;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
@@ -33,6 +34,9 @@ public class CKRecipeTypes {
 
     public static final Supplier<RecipeType<PassiveMixingRecipe>> PASSIVE_MIXING_TYPE = registerRecipeType("passive_mixing");
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PassiveMixingRecipe>> PASSIVE_MIXING = SERIALIZERS.register("passive_mixing", () -> new StandardProcessingRecipe.Serializer<>(PassiveMixingRecipe::new));
+
+    public static final Supplier<RecipeType<PassivePressingRecipe>> PASSIVE_PRESSING_TYPE = registerRecipeType("passive_pressing");
+    public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PassivePressingRecipe>> PASSIVE_PRESSING = SERIALIZERS.register("passive_pressing", () -> new StandardProcessingRecipe.Serializer<>(PassivePressingRecipe::new));
 
     public static final Supplier<RecipeType<PassiveBasinRecipe>> PASSIVE_BASIN_TYPE = registerRecipeType("passive_basin");
     public static DeferredHolder<RecipeSerializer<?>, RecipeSerializer<PassiveBasinRecipe>> PASSIVE_BASIN = SERIALIZERS.register("passive_basin", () -> new StandardProcessingRecipe.Serializer<>(PassiveBasinRecipe::new));
