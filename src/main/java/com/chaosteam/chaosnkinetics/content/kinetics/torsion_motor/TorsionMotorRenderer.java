@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import net.createmod.catnip.data.Iterate;
@@ -44,6 +45,8 @@ public class TorsionMotorRenderer extends KineticBlockEntityRenderer<TorsionMoto
                 continue;
 
             boolean outputSide = direction == facing;
+            if (!outputSide)
+                continue;
             float angle = getShaftAngle(be, pos, axis, direction, outputSide);
             SuperByteBuffer shaft = CachedBuffers.partialFacing(AllPartialModels.SHAFT_HALF, state, direction);
             kineticRotationTransform(shaft, be, axis, angle, light);
