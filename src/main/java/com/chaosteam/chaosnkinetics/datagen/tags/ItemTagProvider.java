@@ -29,6 +29,8 @@ public class ItemTagProvider {
         prov.tag(CKTags.Items.INGOTS)
                 .add(CKItems.CRUDE_BRASS.get(), CKItems.REFINED_BRASS.get(),
                 CKItems.LEAD.get(), CKItems.UNREFINED_LEAD.get());
+        prov.tag(CKTags.Items.PLATES)
+                .add(CKItems.ANDSITE_ALLOY_SHEET.get());
         prov.tag(CKTags.Items.ingot("refined_brass"))
                 .add(CKItems.REFINED_BRASS.get());
         prov.tag(CKTags.Items.ingot("crude_brass"))
@@ -40,5 +42,6 @@ public class ItemTagProvider {
         prov.tag(CKTags.Items.WOOD_FUEL)
                 .add(TagEntry.optionalTag(ResourceLocation.fromNamespaceAndPath("minecraft", "logs_that_burn")))
                 .add(TagEntry.optionalTag(ResourceLocation.fromNamespaceAndPath("minecraft", "planks")));
+        prov.tag(CKTags.Items.tag("simulated", "spring_adjuster"));
     }
 }

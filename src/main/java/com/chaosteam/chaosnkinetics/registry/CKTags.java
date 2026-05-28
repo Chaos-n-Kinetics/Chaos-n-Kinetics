@@ -13,6 +13,7 @@ import net.minecraft.world.level.material.Fluid;
 public class CKTags {
     public static class Items {
         public static final TagKey<Item> INGOTS = commonTag("ingots");
+        public static final TagKey<Item> PLATES = commonTag("plates");
 
         public static final TagKey<Item> WOOD_FUEL = ckTag("wood_fuel");
 
