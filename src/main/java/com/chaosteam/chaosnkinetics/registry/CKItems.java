@@ -37,6 +37,10 @@ public class CKItems {
             .item("spring", Item::new)
             .register();
 
+    public static final ItemEntry<Item> ANDSITE_ALLOY_SHEET = ChaosKinetics.REGISTRATE
+            .item("andesite_alloy_sheet", Item::new)
+            .register();
+
     public static void register() {
     }
 }

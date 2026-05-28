@@ -1,0 +1,14 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "create:andesite_alloy"
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "chaosnkinetics:andesite_alloy_sheet"
+    }
+  ]
+}
