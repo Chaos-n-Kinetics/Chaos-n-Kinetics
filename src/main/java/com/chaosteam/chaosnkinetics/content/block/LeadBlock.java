@@ -4,7 +4,6 @@ import com.chaosteam.chaosnkinetics.content.mobeffects.CKMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +23,7 @@ public class LeadBlock extends Block {
 
     @Override
     public void playerDestroy(@NotNull Level level, @NotNull Player player, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable BlockEntity blockEntity, @NotNull ItemStack tool) {
-        MobEffectInstance current_effect = player.getEffect(CKMobEffects.LEAD_LUNG);
+        MobEffectInstance current_effect = player.getEffect(CKMobEffects.LEAD_POISONING);
         byte amplifier;
         if (current_effect == null) {
             amplifier = 0;
@@ -32,7 +31,7 @@ public class LeadBlock extends Block {
             amplifier = (byte) (current_effect.getAmplifier() + 1);
         }
         if (amplifier > 5) amplifier = 5;
-        player.addEffect(new MobEffectInstance(CKMobEffects.LEAD_LUNG, 200 * (amplifier + 1), amplifier));
+        player.addEffect(new MobEffectInstance(CKMobEffects.LEAD_POISONING, 200 * (amplifier + 1), amplifier));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 160, amplifier));
         super.playerDestroy(level, player, pos, state, blockEntity, tool);
     }
@@ -40,14 +39,14 @@ public class LeadBlock extends Block {
     @Override
     public void stepOn(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.addEffect(new MobEffectInstance(CKMobEffects.LEAD_LUNG, 400, 0));
+            livingEntity.addEffect(new MobEffectInstance(CKMobEffects.LEAD_POISONING, 400, 0));
             livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 160, 0));
         }
     }
 
     @Override
     protected void attack(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player) {
-        player.addEffect(new MobEffectInstance(CKMobEffects.LEAD_LUNG, 400, 0));
+        player.addEffect(new MobEffectInstance(CKMobEffects.LEAD_POISONING, 400, 0));
         player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 160, 0));
     }
 }
