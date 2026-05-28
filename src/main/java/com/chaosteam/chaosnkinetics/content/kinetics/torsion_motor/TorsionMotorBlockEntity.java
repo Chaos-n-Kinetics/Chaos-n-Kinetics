@@ -24,7 +24,7 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
     public static final float MAX_OUTPUT_RPM = 16;
     public static final float STRESS_CAPACITY = 64;
     public static final int FULL_OUTPUT_TICKS = 20 * 60 * 5;
-    public static final int FULL_WIND_TICKS_AT_MAX_RPM = 20 * 75;
+    public static final int FULL_WIND_TICKS_AT_MAX_RPM = 10 * 75;
 
     private float charge;
     private float windingSign = 1;
