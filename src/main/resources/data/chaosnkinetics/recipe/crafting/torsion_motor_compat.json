@@ -12,7 +12,7 @@
       "item": "create:shaft"
     },
     "S": {
-      "item": "chaosnkinetics:spring"
+      "item": "simulated:spring"
     }
   },
   "pattern": [

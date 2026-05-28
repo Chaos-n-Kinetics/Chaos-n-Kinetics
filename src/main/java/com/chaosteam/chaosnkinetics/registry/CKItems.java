@@ -33,6 +33,10 @@ public class CKItems {
             .item("biochar", Item::new)
             .register();
 
+    public static final ItemEntry<Item> SPRING = ChaosKinetics.REGISTRATE
+            .item("spring", Item::new)
+            .register();
+
     public static void register() {
     }
 }
