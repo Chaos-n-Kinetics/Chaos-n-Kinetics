@@ -184,8 +184,13 @@ public class TorsionMotorBlockEntity extends GeneratingKineticBlockEntity {
         if (charge <= 0)
             return 0;
 
+        float rawSpeed = -windingSign * charge * MAX_OUTPUT_RPM;
+        float roundedSpeed = (float) Math.round(rawSpeed);
+
+        if (roundedSpeed == 0 && charge > 0) roundedSpeed = Math.signum(rawSpeed);
+
         Direction facing = getBlockState().getValue(TorsionMotorBlock.FACING);
-        return convertToDirection(-windingSign * charge * MAX_OUTPUT_RPM, facing);
+        return convertToDirection(roundedSpeed, facing);
     }
 
     @Override
